@@ -9,7 +9,6 @@ $:.unshift(Puppet[:plugindest])
 require 'puppet/util/nc_https'
 require 'puppet_x/node_manager/common'
 
-
 def update_classes(env)
   nc = Puppet::Util::Nc_https.new
   nc.update_classes(env)
@@ -23,7 +22,7 @@ begin
   if res.is_a?(Hash)
     puts({ responsecode: res.code, responsebody: res.body }.to_json)
   else
-    puts({responsecode: 201, responsebody: %(#{env} update-classes triggered)}.to_json)
+    puts({ responsecode: 201, responsebody: %(#{env} update-classes triggered) }.to_json)
   end
   exit 0
 rescue Puppet::Error => e
